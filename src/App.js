@@ -74,9 +74,6 @@ export default class App extends React.Component {
               <Route exact path='/movies' component={MovieList} />
             </React.Fragment>
           }
-          
-          {this.state.loading ? 'Searching!' :
-            <Route path={this.state.path} />}
         </MovieContext.Provider>
       </div>
     );

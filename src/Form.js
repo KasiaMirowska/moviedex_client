@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import MovieContext from './MovieContext';
 
 class Form extends React.Component {
@@ -30,10 +29,9 @@ class Form extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.context.updateLoading(true)
-        console.log(this.state.choice, this.state.input, 'AM I HERE????????')
         
         let baseURL = `http://localhost:8000/movies/search?${this.state.choice}=${this.state.input}`
-        this.context.updatePath(`/movies/search?${this.state.choice}=${this.state.input}`)
+     
             
         return fetch(baseURL, {
             headers: {
@@ -47,7 +45,6 @@ class Form extends React.Component {
               return res.json();
             })
             .then(data => {
-                console.log(data, 'HEREERERERE')
                 this.context.updateMovies(data)
                 this.context.updateLoading(false) 
             })
@@ -66,9 +63,9 @@ class Form extends React.Component {
                 </select>
                 <input type="text" name="input"  required onChange={(e) => this.input(e.target.value)}/>
                 
-                <Link to={`/movies/search?${this.state.choice}=${this.state.input}`}>
+               
                 <button type='submit'>Search</button>
-                </Link>
+               
                 
             </form>
         )
